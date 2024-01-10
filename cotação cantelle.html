@@ -12,7 +12,7 @@
 <body>
     <div class="container">
         <div id="conteudo">
-            <p id="font">Simulador | CANTELLE</p>
+            <p id="font">Simulador desconto</p>
             <br>
             <div>
                 <label for="valornota"> Digite o valor da Nota: </label> <br>
@@ -33,9 +33,9 @@
                     
                     <br>
                     
-                    <input type="radio" name="transporte" value="3" id="santacatarina">SantaCatarina
+                    <input type="radio" name="transportesanta" value="3" id="santacatarina">SantaCatarina
                 <br>
-                    <input type="radio" id="riogrande" name="transporte" value="4">RioGrande do Sul
+                    <input type="radio" id="riogrande" name="transporte" value="0.95">RioGrande do Sul
                     
                     <br>
 
@@ -58,11 +58,8 @@
         $
         ('.money').mask('000.000.000.000.000,00',{reverse:true});});
         
-    
 
-function calcular(){
-var valornota             = document.getElementById("valornota").value;
-var resultado         = document.getElementById("pagar");
+var resultado         = document.querySelector('input[name="transportesanta"]:checked').value;
 var creditoParcelado  = document.getElementById("parcelado");
 var peso             = document.getElementById("peso1").value;
 var mkmga              =document.getElementById("mkmga").value;
@@ -77,9 +74,8 @@ if(peso>0.1)
 
 {
         
-        valornota = valornota*0.4/100;
-        grissgo = valornota*0.1/100
-        peso = peso*mkmga;
+
+        peso = peso*resultado;
         fretogo = peso*mkgo
         if(fretogo<55){
             fretogo = 55
@@ -88,7 +84,7 @@ if(peso>0.1)
             peso = 115
         }
      
-        total = fretogo + valornota + peso + grissgo;
+        total =  valornota + peso 
 
     
 
