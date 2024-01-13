@@ -13,81 +13,50 @@
     <div class="container">
         <div id="conteudo">
             <p id="font">Simulador desconto</p>
-            <br>
-            <div>
-                <label for="valornota"> Digite o valor da Nota: </label> <br>
-                <input type="text" id="valornota" name="valornota" required>
-            </div>
-<br>
-            <div>
-                <label for="peso1    "> Digite o peso: </label> <br>
-                <input type="text" id="peso1" name="peso1" required>
-            </div>
-<br> 
-            <div>
-                <input type="radio" id= "saopaulo" name="transporte" value="1">SaoPaulo
+           <label for="peso">Peso:</label>
+  <input type="number" id="peso" />
 
-                <br>
+  <label for="valor_nota">Valor da Nota:</label>
+  <input type="number" id="valor_nota" />
 
-                    <input type="radio" id="parana" name="transporte" value="2">0.55
-                    
-                    <br>
-                    
-                
-            </div>
+  <br />
 
-</select>
+  <label for="desconto15">Paraná</label>
+  <input type="radio" name="desconto" value="0.55" id="desconto15" />
+  
+  <label for="desconto10">SãoPaulo</label>
+  <input type="radio" name="desconto" value="0.85" id="desconto10" />
+  
+  <label for="desconto5">SantaCatarina</label>
+  <input type="radio" name="desconto" value="0.65" id="desconto5" />
 
-            <div>
-                <p>VALOR TOTAL DO FRETE: </p>
-                <input type="text" id="pagar" name="pagar" disabled>
-                <input id="botao1" type="button" value="Calcular" onclick="calcular()" onmouseover="botao(this)" onmouseout="botao(this)">
-             </div>
-</div>
-</div>
+  <br />
 
+  <button onclick="calcularDesconto()">Calcular</button>
+
+  <h2>Desconto Aplicado: <span id="total_desconto"></span></h2>
+</body>
+</html>
 <script>
+function calcularDesconto() {
+  var peso = document.getElementById('peso').value;
+  var valorNota = document.getElementById('valor_nota').value;
+  var desconto = 0;
+  var griss = valorNota * 0.5/100
 
-    jQuery(document).ready(function($) {
-        $
-        ('.money').mask('000.000.000.000.000,00',{reverse:true});});
-        
+  var elementosDesconto = document.getElementsByName('desconto');
+  for (var i = 0; i < elementosDesconto.length; i++) {
+    if (elementosDesconto[i].checked) {
+      desconto = parseFloat(elementosDesconto[i].value);
+      break;
+    }
+  }
+ 
+  var totalDesconto = peso * desconto + griss;
 
-var resultado         = document.querySelector('input[name="transporte"]:checked').value;
-var creditoParcelado  = document.getElementById("parcelado");
-var peso             = document.getElementById("peso1").value;
-var mkmga              =document.getElementById("mkmga").value;
-var grissgo            = 0;
-var desconto            = 0;
-var total              =0;
-var fretogo                    = 0;
-var mkgo            =document.getElementById("mkgo").value;
 
-if(valornota>99)
-if(peso>0.1)
-
-{
-        
-
-        peso = peso*resultado;
-        fretogo = peso*mkgo
-        if(fretogo<55){
-            fretogo = 55
-        }
-         if(peso<115){
-            peso = 115
-        }
-     
-        total =  valornota + peso 
-
-    
-
+  document.getElementById('total_desconto').innerHTML = totalDesconto.toFixed(2);
 }
-
-
-resultado.value = "Pagar:"+total;
-}
-
 </script>
     <ul class="menu">
         <div class="toggle">
